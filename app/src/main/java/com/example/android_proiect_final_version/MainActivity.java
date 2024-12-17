@@ -3,6 +3,7 @@ package com.example.android_proiect_final_version;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,9 +15,15 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.android_proiect_final_version.HttpsManager.HttpsManager;
+import com.example.android_proiect_final_version.JsonParsers.ProblemaParser;
 import com.example.android_proiect_final_version.database.AplicatieDB;
+import com.example.android_proiect_final_version.models.Problema;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    String adresaURLProbleme="https://jsonkeeper.com/b/ABM8";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +53,9 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent=new Intent(getApplicationContext(), HomePageActivity.class);
                 startActivity(intent);
                 SharedPreferences sp=getSharedPreferences("utilizatorCurent", MODE_PRIVATE);
-                SharedPreferences.Editor editor=sp.edit();
-                editor.putString("username", username);
-                editor.apply();
+                SharedPreferences.Editor editortwo=sp.edit();
+                editortwo.putString("username", username);
+                editortwo.apply();
             }
             else {
                 Toast.makeText(getApplicationContext(), "Username gresit sau parola incorecta.", Toast.LENGTH_SHORT).show();
@@ -63,6 +70,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void fillProblemeTableFromRetea(){
+        Thread thread=new Thread(){
+            @Override
+            public void run(){
+                SharedPreferences prefs = getSharedPreferences("SyncedRetea", MODE_PRIVATE);
+                boolean alreadySynced = prefs.getBoolean("problemeSynced", false);
 
+                if(!alreadySynced){
+                    HttpsManager httpsManager=new HttpsManager(adresaURLProbleme);
+                    String rezultat=httpsManager.procesare();
+                    List<Problema> problemeRetea= ProblemaParser.parseString(rezultat);
+                    for(Problema problema:problemeRetea){
+                        AplicatieDB.getInstance(getApplicationContext()).getProblemaDAO().insertProblema(problema);
+                    }
+
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.putBoolean("problemeSynced", true);
+                    editor.apply();
+                }
+
+            }
+        };
+        thread.start();
     }
 }
