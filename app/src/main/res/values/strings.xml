@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Conectat la Bucuresti</string>
+    <string-array name="sectoare">
+        <item>UNU</item>
+        <item>DOI</item>
+        <item>TREI</item>
+        <item>PATRU</item>
+        <item>CINCI</item>
+        <item>SASE</item>
+    </string-array>
+    <string-array name="categoriiProbleme">
+        <item>PISTA</item>
+        <item>RECICLARE</item>
+        <item>SEMAFOR</item>
+        <item>ACCESIBILITATE</item>
+        <item>ALTELE</item>
+    </string-array>
+</resources>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/miAddProblem"
+        android:title="Raporteaza o problema" />
+    <item
+        android:id="@+id/miProfile"
+        android:title="Profilul tau" />
+</menu>
