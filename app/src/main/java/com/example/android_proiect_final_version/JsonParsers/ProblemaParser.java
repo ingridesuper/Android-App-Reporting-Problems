@@ -17,5 +17,6 @@ public class ProblemaParser {
     private Problema parseProblema(JSONObject jsonObject) throws JSONException {
         String titlu=jsonObject.getString(TITLU);
         String adresa=jsonObject.getString(ADRESA);
+        String autor=jsonObject.getString(AUTOR);
     }
 }
