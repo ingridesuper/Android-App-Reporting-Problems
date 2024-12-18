@@ -17,13 +17,20 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.android_proiect_final_version.HttpsManager.HttpsManager;
 import com.example.android_proiect_final_version.JsonParsers.ProblemaParser;
+import com.example.android_proiect_final_version.JsonParsers.SemnaturaParser;
+import com.example.android_proiect_final_version.JsonParsers.UtilizatorParser;
 import com.example.android_proiect_final_version.database.AplicatieDB;
 import com.example.android_proiect_final_version.models.Problema;
+import com.example.android_proiect_final_version.models.Semnatura;
+import com.example.android_proiect_final_version.models.Utilizator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     String adresaURLProbleme="https://jsonkeeper.com/b/ABM8";
+    String adresaURLUtilizatori="https://jsonkeeper.com/b/LMSU";
+    String adresaURLSemnaturi="https://jsonkeeper.com/b/E68E";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +43,7 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        fillProblemeTableFromRetea();
-
+        fillTablesFromRetea();
 
         EditText etUsername=findViewById(R.id.etUsername);
         EditText etParola=findViewById(R.id.etParola);
@@ -53,9 +59,9 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent=new Intent(getApplicationContext(), HomePageActivity.class);
                 startActivity(intent);
                 SharedPreferences sp=getSharedPreferences("utilizatorCurent", MODE_PRIVATE);
-                SharedPreferences.Editor editortwo=sp.edit();
-                editortwo.putString("username", username);
-                editortwo.apply();
+                SharedPreferences.Editor editorUsername=sp.edit();
+                editorUsername.putString("username", username);
+                editorUsername.apply();
             }
             else {
                 Toast.makeText(getApplicationContext(), "Username gresit sau parola incorecta.", Toast.LENGTH_SHORT).show();
@@ -69,7 +75,13 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    void fillProblemeTableFromRetea(){
+    private void fillTablesFromRetea(){
+        fillProblemeTableFromRetea();
+        fillUtilizatoriTableFromRetea();
+        fillSemnaturiTableFromRetea();
+    }
+
+    private void fillProblemeTableFromRetea(){
         Thread thread=new Thread(){
             @Override
             public void run(){
@@ -86,6 +98,56 @@ public class MainActivity extends AppCompatActivity {
 
                     SharedPreferences.Editor editor = prefs.edit();
                     editor.putBoolean("problemeSynced", true);
+                    editor.apply();
+                }
+
+            }
+        };
+        thread.start();
+    }
+
+    private void fillUtilizatoriTableFromRetea(){
+        Thread thread=new Thread(){
+            @Override
+            public void run(){
+                SharedPreferences prefs = getSharedPreferences("SyncedRetea", MODE_PRIVATE);
+                boolean alreadySynced = prefs.getBoolean("utilizatoriSynced", false);
+
+                if(!alreadySynced){
+                    HttpsManager httpsManager=new HttpsManager(adresaURLUtilizatori);
+                    String rezultat=httpsManager.procesare();
+                    List<Utilizator> utilizatoriRetea= UtilizatorParser.parseString(rezultat);
+                    for(Utilizator utilizator:utilizatoriRetea){
+                        AplicatieDB.getInstance(getApplicationContext()).getUtilizatorDAO().insertUtilizator(utilizator);
+                    }
+
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.putBoolean("utilizatoriSynced", true);
+                    editor.apply();
+                }
+
+            }
+        };
+        thread.start();
+    }
+
+    private void fillSemnaturiTableFromRetea(){
+        Thread thread=new Thread(){
+            @Override
+            public void run(){
+                SharedPreferences prefs = getSharedPreferences("SyncedRetea", MODE_PRIVATE);
+                boolean alreadySynced = prefs.getBoolean("semnaturiSynced", false);
+
+                if(!alreadySynced){
+                    HttpsManager httpsManager=new HttpsManager(adresaURLSemnaturi);
+                    String rezultat=httpsManager.procesare();
+                    List<Semnatura> semnaturiRetea= SemnaturaParser.parseString(rezultat);
+                    for(Semnatura semnatura:semnaturiRetea){
+                        AplicatieDB.getInstance(getApplicationContext()).getSemnaturaDAO().insertSemnatura(semnatura);
+                    }
+
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.putBoolean("semnaturiSynced", true);
                     editor.apply();
                 }
 

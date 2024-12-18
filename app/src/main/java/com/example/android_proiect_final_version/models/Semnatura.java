@@ -40,4 +40,12 @@ public class Semnatura {
     public void setProblemaId(@NonNull Long problemaId) {
         this.problemaId = problemaId;
     }
+
+    @Override
+    public String toString() {
+        return "Semnatura{" +
+                "problemaId=" + problemaId +
+                ", username='" + username + '\'' +
+                '}';
+    }
 }
