@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -51,6 +52,7 @@ public class ViewProfilPropriuActivity extends AppCompatActivity {
         TextView tvNrProblemeRaportate=findViewById(R.id.tvNrProblemeRaportate);
         FloatingActionButton fabEditProfile=findViewById(R.id.fabEditProfile);
         TooltipCompat.setTooltipText(fabEditProfile, "Editeaza-ti profilul!");
+        Button btnViewDateContact=findViewById(R.id.btnSeeDateContact);
 
         SharedPreferences sp=getSharedPreferences("utilizatorCurent", MODE_PRIVATE);
         username=sp.getString("username", "none");
@@ -95,6 +97,11 @@ public class ViewProfilPropriuActivity extends AppCompatActivity {
             intent.putExtra("problema", probleme.get(i));
             launcherEditProblema.launch(intent);
         }));
+
+        btnViewDateContact.setOnClickListener(view -> {
+            Intent intent=new Intent(getApplicationContext(), ViewDateContactActivity.class);
+            startActivity(intent);
+        });
     }
 
     @Override

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ViewDateContactActivity">
+
+    <EditText
+        android:id="@+id/etEntitate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="Ale cui sunt aceste date de contact?"
+        android:layout_margin="20dp"/>
+
+    <EditText
+        android:id="@+id/etAdresaMail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="Adresă de email"
+        android:layout_margin="20dp"/>
+
+    <EditText
+        android:id="@+id/etTelefon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="Număr de telefon"
+        android:layout_margin="20dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/btnGolireDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Golire date"
+                android:layout_margin="5dp"/>
+
+            <Button
+                android:id="@+id/btnSave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Salvează"
+                android:layout_margin="5dp"/>
+
+            <Button
+                android:id="@+id/btnDelete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Șterge"
+                android:layout_margin="5dp"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvDateContact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Date de contact existente: "
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_margin="10dp"/>
+
+        <ListView
+            android:id="@+id/lvDateContact"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+</LinearLayout>
