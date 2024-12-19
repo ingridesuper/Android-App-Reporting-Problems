@@ -40,7 +40,7 @@ public class AdapterUtilizator extends ArrayAdapter<Utilizator> {
         TextView tvUsername=view.findViewById(R.id.tvUsername);
         TextView tvNumePrenumeSector=view.findViewById(R.id.tvNumePrenumeSector);
         tvUsername.setText(utilizator.getUsername());
-        tvNumePrenumeSector.setText(utilizator.getNume()+" "+utilizator.getPrenume()+", rezident in "+utilizator.getSector().toString());
+        tvNumePrenumeSector.setText(utilizator.getNume()+" "+utilizator.getPrenume()+", rezident in Sectorul "+utilizator.getSector().toString().toLowerCase());
         return view;
     }
 }

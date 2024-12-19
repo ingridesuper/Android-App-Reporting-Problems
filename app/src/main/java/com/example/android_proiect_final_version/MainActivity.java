@@ -30,10 +30,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    String adresaURLProbleme="https://jsonkeeper.com/b/5D05";
+    String adresaURLProbleme=" https://jsonkeeper.com/b/3U4F";
     String adresaURLUtilizatori="https://jsonkeeper.com/b/LMSU";
     String adresaURLSemnaturi="https://jsonkeeper.com/b/7SEJ";
-    String adresaURLIdei="https://jsonkeeper.com/b/GBGR";
+    String adresaURLIdei="https://jsonkeeper.com/b/8F82";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +46,14 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        fillTablesFromRetea();
+        for(Utilizator u:AplicatieDB.getInstance(getApplicationContext()).getUtilizatorDAO().getUtilizatori()){
+            Log.i("utilizator", u.toString());
+        }
+
+        fillUtilizatoriTableFromRetea();
+        fillProblemeTableFromRetea();
+        fillSemnaturiTableFromRetea();
+        fillIdeiTableFromRetea();
 
         EditText etUsername=findViewById(R.id.etUsername);
         EditText etParola=findViewById(R.id.etParola);
@@ -78,14 +85,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
-
-    private void fillTablesFromRetea(){
-        fillUtilizatoriTableFromRetea();
-        fillProblemeTableFromRetea();
-        fillSemnaturiTableFromRetea();
-        fillIdeiTableFromRetea();
-    }
 
     private void fillProblemeTableFromRetea(){
         Thread thread=new Thread(){

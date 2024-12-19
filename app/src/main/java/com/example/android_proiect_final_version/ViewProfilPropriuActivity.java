@@ -63,7 +63,7 @@ public class ViewProfilPropriuActivity extends AppCompatActivity {
         lvProbleme.setAdapter(adapterProblema);
 
         tvUsername.setText(username);
-        tvNumePrenumeSector.setText(utilizator.getNume()+" "+utilizator.getPrenume()+", rezident in "+utilizator.getSector());
+        tvNumePrenumeSector.setText(utilizator.getNume()+" "+utilizator.getPrenume()+", rezident in Sectorul "+utilizator.getSector().toString().toLowerCase());
         int nrProblemeRaportate=AplicatieDB.getInstance(getApplicationContext()).getUtilizatorDAO().getNrProblemeRaportateDeUtilizator(username);
         tvNrProblemeRaportate.setText("Numar probleme raportate: "+nrProblemeRaportate);
 

@@ -47,7 +47,7 @@ public class ViewIdeeActivity extends AppCompatActivity {
 
         tvTitlu.setText(idee.getTitlu());
         tvDescriere.setText(idee.getDescriere());
-        tvSector.setText(idee.getSector().toString());
+        tvSector.setText("Sectorul "+idee.getSector().toString().toLowerCase());
         tvAutor.setText("Autor: "+idee.getAutorUsername());
         List<SemnaturaIdee> semnaturi= AplicatieDB.getInstance(getApplicationContext()).getSemnaturaIdeeDAO().getSemnaturiForIdee(idee.getId());
         int nrSemnaturi=semnaturi.size();

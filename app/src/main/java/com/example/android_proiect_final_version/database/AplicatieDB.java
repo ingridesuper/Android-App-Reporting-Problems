@@ -17,7 +17,7 @@ import com.example.android_proiect_final_version.models.Semnatura;
 import com.example.android_proiect_final_version.models.SemnaturaIdee;
 import com.example.android_proiect_final_version.models.Utilizator;
 
-@Database(entities = {Utilizator.class, Problema.class, Semnatura.class, Idee.class, SemnaturaIdee.class}, version=5, exportSchema = false)
+@Database(entities = {Utilizator.class, Problema.class, Semnatura.class, Idee.class, SemnaturaIdee.class}, version=10, exportSchema = false)
 public abstract class AplicatieDB extends RoomDatabase {
     private static AplicatieDB instance;
     public static final String databaseName="database.db";

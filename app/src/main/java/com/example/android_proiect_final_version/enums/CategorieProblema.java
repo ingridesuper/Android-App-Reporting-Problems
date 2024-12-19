@@ -16,8 +16,4 @@ public enum CategorieProblema {
         return nume;
     }
 
-    @Override
-    public String toString() {
-        return "Categorie problema: " + nume;
-    }
 }

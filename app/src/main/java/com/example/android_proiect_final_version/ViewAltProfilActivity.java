@@ -48,7 +48,7 @@ public class ViewAltProfilActivity extends AppCompatActivity {
         utilizator=(Utilizator)intent.getSerializableExtra("profil");
 
         tvUsername.setText(utilizator.getUsername());
-        tvNumePrenumeSector.setText(utilizator.getNume()+" "+utilizator.getPrenume()+", rezident in "+utilizator.getSector());
+        tvNumePrenumeSector.setText(utilizator.getNume()+" "+utilizator.getPrenume()+", rezident in Sectorul "+utilizator.getSector().toString().toLowerCase());
         int nrProblemeRaportate=AplicatieDB.getInstance(getApplicationContext()).getUtilizatorDAO().getNrProblemeRaportateDeUtilizator(utilizator.getUsername());
         tvNrProblemeRaportate.setText("Numar probleme raportate: "+nrProblemeRaportate);
         tvSubtitlu.setText("Acestea sunt problemele raportate de "+utilizator.getUsername()+": ");

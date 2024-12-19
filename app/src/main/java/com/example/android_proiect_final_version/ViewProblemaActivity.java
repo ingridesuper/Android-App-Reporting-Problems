@@ -54,8 +54,8 @@ public class ViewProblemaActivity extends AppCompatActivity {
 
         tvTitlu.setText(problema.getTitlu());
         tvDescriere.setText(problema.getDescriere());
-        tvAdresaSector.setText(problema.getSector().toString()+" - "+problema.getAdresa());
-        tvCategorie.setText(problema.getCategorieProblema().toString());
+        tvAdresaSector.setText("Sectorul "+problema.getSector().toString().toLowerCase()+" - "+problema.getAdresa());
+        tvCategorie.setText("Categorie: "+problema.getCategorieProblema().toString());
         tvAutor.setText("Autor: "+problema.getAutorUsername());
         List<Semnatura> semnaturi= AplicatieDB.getInstance(getApplicationContext()).getSemnaturaDAO().getSemnaturiForProblema(problema.getId());
         int nrSemnaturi=semnaturi.size();

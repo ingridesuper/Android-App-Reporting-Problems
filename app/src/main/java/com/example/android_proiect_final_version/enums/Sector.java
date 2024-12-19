@@ -21,8 +21,4 @@ public enum Sector {
         return this.numar;
     }
 
-    @Override
-    public String toString() {
-        return "Sector " + numar;
-    }
 }
