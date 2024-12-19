@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/miAddProblem"
+        android:title="Raportează o problemă" />
+    <item
+        android:id="@+id/miProfile"
+        android:title="Profilul tău" />
+    <item
+        android:id="@+id/miDescoperaAltiUtilizatori"
+        android:title="Descoperă alți utilizatori" />
+    <item
+        android:id="@+id/miFabricaDeIdei"
+        android:title="Fabrica de idei" />
+</menu>
