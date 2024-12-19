@@ -88,6 +88,10 @@ public class HomePageActivity extends AppCompatActivity {
             Intent intent=new Intent(getApplicationContext(), ViewIdeiActivity.class);
             startActivity(intent);
         }
+        else if (item.getItemId()==R.id.miFeedback){
+            Intent intent=new Intent(getApplicationContext(), ViewFeedbackActivity.class);
+            startActivity(intent);
+        }
         return true;
     }
 

@@ -13,4 +13,7 @@
     <item
         android:id="@+id/miFabricaDeIdei"
         android:title="Fabrica de idei" />
+    <item
+        android:id="@+id/miFeedback"
+        android:title="Feedback-ul acestei aplicații" />
 </menu>
