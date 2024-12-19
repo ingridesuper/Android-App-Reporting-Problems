@@ -102,6 +102,8 @@ public class ViewProblemaActivity extends AppCompatActivity {
 
         launcherEditProblema=registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result->{
             if(result.getResultCode()==RESULT_OK){
+                Intent intentThatStartedActivity=getIntent();
+                setResult(RESULT_OK, intentThatStartedActivity);
                 finish();
             }
         });
@@ -114,6 +116,8 @@ public class ViewProblemaActivity extends AppCompatActivity {
 
         btnStergeProblema.setOnClickListener(view->{
             AplicatieDB.getInstance(getApplicationContext()).getProblemaDAO().deleteProblema(problema);
+            Intent intentThatStartedActivity=getIntent();
+            setResult(RESULT_OK, intentThatStartedActivity);
             finish();
         });
     }

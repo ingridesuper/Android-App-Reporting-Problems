@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,6 +36,7 @@ public class AddProblemActivity extends AppCompatActivity {
             return insets;
         });
 
+        TextView tvRaporteazaProblema=findViewById(R.id.tvRaporteazaProblema);
         EditText etTitlu=findViewById(R.id.etTitlu);
         EditText etDescriere=findViewById(R.id.etDescriere);
         EditText etAdresa=findViewById(R.id.etAdresa);
@@ -54,6 +56,7 @@ public class AddProblemActivity extends AppCompatActivity {
         Intent intentOne=getIntent();
         if (intentOne.hasExtra("problemaDeEditat")) {
             Problema problemaDeEditat=(Problema) intentOne.getSerializableExtra("problemaDeEditat");
+            tvRaporteazaProblema.setText("Editează problema");
             etTitlu.setText(problemaDeEditat.getTitlu());
             etDescriere.setText(problemaDeEditat.getDescriere());
             etAdresa.setText(problemaDeEditat.getAdresa());

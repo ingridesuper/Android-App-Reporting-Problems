@@ -9,12 +9,17 @@
     <TextView
         android:id="@+id/tvTitlu"
         android:layout_width="wrap_content"
+        android:textColor="@color/primaryPurple"
         android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:fontFamily="@font/manrope_bold"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tvDescriere"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp" />
+        android:textSize="10sp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/manrope" />
 </LinearLayout>

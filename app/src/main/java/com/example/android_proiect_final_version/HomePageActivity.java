@@ -26,6 +26,7 @@ import java.util.List;
 
 public class HomePageActivity extends AppCompatActivity {
     ActivityResultLauncher<Intent> launcherProblema;
+    ActivityResultLauncher<Intent> launcherProfil;
     ListView lvProbleme;
     List<Problema> problemeList=new ArrayList<>();
     ArrayAdapter<Problema> adapterProblema;
@@ -55,6 +56,14 @@ public class HomePageActivity extends AppCompatActivity {
             }
         });
 
+        launcherProfil=registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result->{
+            if(result.getResultCode()==RESULT_OK){
+                problemeList.clear();
+                problemeList.addAll(AplicatieDB.getInstance(getApplicationContext()).getProblemaDAO().getAllProbleme());
+                adapterProblema.notifyDataSetChanged();
+            }
+        });
+
         lvProbleme.setOnItemClickListener(((adapterView, view, i, l) -> {
             Intent intent=new Intent(getApplicationContext(), ViewProblemaActivity.class);
             intent.putExtra("problema", problemeList.get(i));
@@ -78,7 +87,7 @@ public class HomePageActivity extends AppCompatActivity {
         }
         else if(item.getItemId()==R.id.miProfile){
             Intent intent=new Intent(getApplicationContext(), ViewProfilPropriuActivity.class);
-            startActivity(intent);
+            launcherProfil.launch(intent);
         }
         else if(item.getItemId()==R.id.miDescoperaAltiUtilizatori){
             Intent intent=new Intent(getApplicationContext(), ViewAltiUtilizatoriActivity.class);
@@ -95,11 +104,4 @@ public class HomePageActivity extends AppCompatActivity {
         return true;
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        problemeList.clear();
-        problemeList.addAll(AplicatieDB.getInstance(getApplicationContext()).getProblemaDAO().getAllProbleme());
-        adapterProblema.notifyDataSetChanged();
-    }
 }

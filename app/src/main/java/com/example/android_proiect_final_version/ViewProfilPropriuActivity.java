@@ -88,6 +88,8 @@ public class ViewProfilPropriuActivity extends AppCompatActivity {
                 probleme.clear();
                 probleme.addAll(AplicatieDB.getInstance(getApplicationContext()).getProblemaDAO().getProblemeOfAutor(username));
                 adapterProblema.notifyDataSetChanged();
+                int nrProblemeRaportate2=AplicatieDB.getInstance(getApplicationContext()).getUtilizatorDAO().getNrProblemeRaportateDeUtilizator(username);
+                tvNrProblemeRaportate.setText("Numar probleme raportate: "+nrProblemeRaportate2);
             }
         });
 
@@ -105,14 +107,9 @@ public class ViewProfilPropriuActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        probleme.clear();
-        probleme.addAll(AplicatieDB.getInstance(getApplicationContext()).getProblemaDAO().getProblemeOfAutor(username));
-        adapterProblema.notifyDataSetChanged();
-
-        int nrProblemeRaportate2=AplicatieDB.getInstance(getApplicationContext()).getUtilizatorDAO().getNrProblemeRaportateDeUtilizator(username);
-        TextView tvNrProblemeRaportate=findViewById(R.id.tvNrProblemeRaportate);
-        tvNrProblemeRaportate.setText("Numar probleme raportate: "+nrProblemeRaportate2);
+    protected void onStop() {
+        super.onStop();
+        Intent intentThatStartedThisActivity=getIntent();
+        setResult(RESULT_OK, intentThatStartedThisActivity);
     }
 }

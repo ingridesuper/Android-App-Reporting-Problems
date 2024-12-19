@@ -10,8 +10,9 @@
         android:id="@+id/tvUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/primaryPurple"
+        android:fontFamily="@font/manrope_bold"
         android:text="username"
+        android:textColor="@color/primaryPurple"
         android:textStyle="bold" />
 
     <TextView
@@ -19,6 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
+        android:fontFamily="@font/manrope"
         android:text="nume prenume sector"
         android:textSize="12sp" />
 </LinearLayout>

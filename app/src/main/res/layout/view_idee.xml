@@ -9,13 +9,15 @@
         android:id="@+id/tvTitlu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textColor="@color/primaryPurple"/>
+        android:fontFamily="@font/manrope_bold"
+        android:textColor="@color/primaryPurple"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tvDescriere"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp" />
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/manrope" />
 
 </LinearLayout>
